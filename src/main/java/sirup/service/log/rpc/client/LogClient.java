@@ -14,6 +14,7 @@ public class LogClient {
 
     private static String address;
     private static int port;
+    private static String serviceName;
     private static LogClient instance;
     private ManagedChannel managedChannel;
     private SirupLogGrpc.SirupLogBlockingStub logService;
@@ -28,9 +29,10 @@ public class LogClient {
             }
         }));
     }
-    public static void init(String address, int port) {
+    public static void init(String address, int port, String serviceName) {
         LogClient.address = address;
         LogClient.port = port;
+        LogClient.serviceName = serviceName;
     }
 
     public static LogClient getInstance() {
@@ -39,7 +41,7 @@ public class LogClient {
 
     public int log(String message) {
         LogRequest request = LogRequest.newBuilder()
-                .setSenderService("AuthService")
+                .setSenderService(serviceName)
                 .setMessage(message)
                 .build();
         LogResponse response;
