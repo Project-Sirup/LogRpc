@@ -39,7 +39,13 @@ public class LogClient {
 
     public int health() {
         HealthRequest request = HealthRequest.newBuilder().build();
-        return 0;
+        HealthResponse response;
+        try {
+            response = logService.health(request);
+        } catch (StatusRuntimeException e) {
+            throw new LogServiceUnavailableException(e.getMessage());
+        }
+        return response.getHealthCode();
     }
 
     public int debug(String message) {
