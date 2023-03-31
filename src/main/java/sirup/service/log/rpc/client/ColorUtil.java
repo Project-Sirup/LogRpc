@@ -8,6 +8,31 @@ public class ColorUtil {
     public static String action(String action) {
         return CYAN + action + RESET;
     }
+    public static String red(String string) {
+        return RED + string + RESET;
+    }
+    public static String green(String string) {
+        return GREEN + string + RESET;
+    }
+    public static String blue(String string) {
+        return BLUE + string + RESET;
+    }
+    public static String yellow(String string) {
+        return YELLOW + string + RESET;
+    }
+    public static String purple(String string) {
+        return PURPLE + string + RESET;
+    }
+    public static String cyan(String string) {
+        return CYAN + string + RESET;
+    }
+    public static String white(String string) {
+        return WHITE + string + RESET;
+    }
+    public static String black(String string) {
+        return BLACK + string + RESET;
+    }
+
 
 
     // Reset

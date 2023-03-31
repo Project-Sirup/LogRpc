@@ -4,10 +4,7 @@ import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.StatusRuntimeException;
 import sirup.service.log.rpc.client.LogServiceUnavailableException;
-import sirup.service.log.rpc.proto.Log;
-import sirup.service.log.rpc.proto.LogRequest;
-import sirup.service.log.rpc.proto.LogResponse;
-import sirup.service.log.rpc.proto.SirupLogGrpc;
+import sirup.service.log.rpc.proto.*;
 
 import java.util.concurrent.TimeUnit;
 
@@ -18,10 +15,10 @@ public class LogClient {
     private static String serviceName;
     private static LogClient instance;
     private ManagedChannel managedChannel;
-    private SirupLogGrpc.SirupLogBlockingStub logService;
+    private SirupLogServiceGrpc.SirupLogServiceBlockingStub logService;
     private LogClient() {
         managedChannel = ManagedChannelBuilder.forAddress(address, port).usePlaintext().build();
-        logService = SirupLogGrpc.newBlockingStub(managedChannel);
+        logService = SirupLogServiceGrpc.newBlockingStub(managedChannel);
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             try {
                 managedChannel.shutdown().awaitTermination(5, TimeUnit.SECONDS);
@@ -40,45 +37,54 @@ public class LogClient {
         return instance == null ? instance = new LogClient() : instance;
     }
 
+    public int health() {
+        HealthRequest request = HealthRequest.newBuilder().build();
+        return 0;
+    }
+
     public int debug(String message) {
-        LogRequest request = makeLogRequest(message);
-        LogResponse response;
+        DebugRequest request = DebugRequest.newBuilder()
+                .setLogRequest(makeLogRequest(message)).build();
+        DebugResponse response;
         try {
             response = logService.debug(request);
         } catch (StatusRuntimeException e) {
             throw new LogServiceUnavailableException(e.getMessage());
         }
-        return response.getCode();
+        return response.getLogResponse().getCode();
     }
     public int info(String message) {
-        LogRequest request = makeLogRequest(message);
-        LogResponse response;
+        InfoRequest request = InfoRequest.newBuilder()
+                .setLogRequest(makeLogRequest(message)).build();
+        InfoResponse response;
         try {
             response = logService.info(request);
         } catch (StatusRuntimeException e) {
             throw new LogServiceUnavailableException(e.getMessage());
         }
-        return response.getCode();
+        return response.getLogResponse().getCode();
     }
     public int warn(String message) {
-        LogRequest request = makeLogRequest(message);
-        LogResponse response;
+        WarnRequest request = WarnRequest.newBuilder()
+                .setLogRequest(makeLogRequest(message)).build();
+        WarnResponse response;
         try {
             response = logService.warn(request);
         } catch (StatusRuntimeException e) {
             throw new LogServiceUnavailableException(e.getMessage());
         }
-        return response.getCode();
+        return response.getLogResponse().getCode();
     }
     public int error(String message) {
-        LogRequest request = makeLogRequest(message);
-        LogResponse response;
+        ErrorRequest request = ErrorRequest.newBuilder()
+                .setLogRequest(makeLogRequest(message)).build();
+        ErrorResponse response;
         try {
             response = logService.error(request);
         } catch (StatusRuntimeException e) {
             throw new LogServiceUnavailableException(e.getMessage());
         }
-        return response.getCode();
+        return response.getLogResponse().getCode();
     }
     private LogRequest makeLogRequest(String message) {
         return LogRequest.newBuilder()
