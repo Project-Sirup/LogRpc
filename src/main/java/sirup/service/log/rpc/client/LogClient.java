@@ -34,7 +34,7 @@ public class LogClient {
         LogClient.address = address;
         LogClient.port = port;
         LogClient.serviceName = serviceName;
-        //getInstance().health();
+        getInstance().health();
     }
 
     public static LogClient getInstance() {
