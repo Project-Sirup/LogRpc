@@ -3,10 +3,11 @@ package sirup.service.log.rpc.client;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.StatusRuntimeException;
-import sirup.service.log.rpc.client.LogServiceUnavailableException;
 import sirup.service.log.rpc.proto.*;
 
 import java.util.concurrent.TimeUnit;
+
+import static sirup.service.log.rpc.client.ColorUtil.name;
 
 public class LogClient {
 
@@ -16,6 +17,8 @@ public class LogClient {
     private static LogClient instance;
     private ManagedChannel managedChannel;
     private SirupLogServiceGrpc.SirupLogServiceBlockingStub logService;
+    private boolean usingFallback = false;
+    private Fallback fallback = new ConsoleFallback();
     private LogClient() {
         managedChannel = ManagedChannelBuilder.forAddress(address, port).usePlaintext().build();
         logService = SirupLogServiceGrpc.newBlockingStub(managedChannel);
@@ -31,6 +34,7 @@ public class LogClient {
         LogClient.address = address;
         LogClient.port = port;
         LogClient.serviceName = serviceName;
+        //getInstance().health();
     }
 
     public static LogClient getInstance() {
@@ -43,52 +47,67 @@ public class LogClient {
         try {
             response = logService.health(request);
         } catch (StatusRuntimeException e) {
-            throw new LogServiceUnavailableException(e.getMessage());
+            usingFallback = true;
+            fallback.use("LogService unavailable, using fallback [" + name(fallback.getClass().getSimpleName()) + "]");
+            return 500;
+            //throw new LogServiceUnavailableException(e.getMessage());
         }
         return response.getHealthCode();
     }
 
     public int debug(String ...message) {
+        String joinedMessage = String.join(" -> ", message);
         DebugRequest request = DebugRequest.newBuilder()
-                .setLogRequest(makeLogRequest(String.join(" -> ", message))).build();
+                .setLogRequest(makeLogRequest(joinedMessage)).build();
         DebugResponse response;
         try {
             response = logService.debug(request);
         } catch (StatusRuntimeException e) {
-            throw new LogServiceUnavailableException(e.getMessage());
+            fallback.use(joinedMessage);
+            return 500;
+            //throw new LogServiceUnavailableException(e.getMessage());
         }
         return response.getLogResponse().getCode();
     }
     public int info(String ...message) {
+        String joinedMessage = String.join(" -> ", message);
         InfoRequest request = InfoRequest.newBuilder()
-                .setLogRequest(makeLogRequest(String.join(" -> ",message))).build();
+                .setLogRequest(makeLogRequest(joinedMessage)).build();
         InfoResponse response;
         try {
             response = logService.info(request);
         } catch (StatusRuntimeException e) {
-            throw new LogServiceUnavailableException(e.getMessage());
+            fallback.use(joinedMessage);
+            return 500;
+            //throw new LogServiceUnavailableException(e.getMessage());
         }
         return response.getLogResponse().getCode();
     }
     public int warn(String ...message) {
+        String joinedMessage = String.join(" -> ", message);
         WarnRequest request = WarnRequest.newBuilder()
-                .setLogRequest(makeLogRequest(String.join(" -> ",message))).build();
+                .setLogRequest(makeLogRequest(joinedMessage)).build();
         WarnResponse response;
         try {
             response = logService.warn(request);
         } catch (StatusRuntimeException e) {
-            throw new LogServiceUnavailableException(e.getMessage());
+            fallback.use(joinedMessage);
+            return 500;
+            //throw new LogServiceUnavailableException(e.getMessage());
         }
         return response.getLogResponse().getCode();
     }
     public int error(String ...message) {
+        String joinedMessage = String.join(" -> ", message);
         ErrorRequest request = ErrorRequest.newBuilder()
-                .setLogRequest(makeLogRequest(String.join(" -> ",message))).build();
+                .setLogRequest(makeLogRequest(joinedMessage)).build();
         ErrorResponse response;
         try {
             response = logService.error(request);
         } catch (StatusRuntimeException e) {
-            throw new LogServiceUnavailableException(e.getMessage());
+            fallback.use(joinedMessage);
+            return 500;
+            //throw new LogServiceUnavailableException(e.getMessage());
         }
         return response.getLogResponse().getCode();
     }
