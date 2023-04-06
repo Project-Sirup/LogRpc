@@ -2,11 +2,14 @@ package sirup.service.log.rpc.client;
 
 public class ColorUtil {
 
+    public static String name(String name) {
+        return "{" + WHITE_BOLD + BLACK_BACKGROUND + name + RESET + "}";
+    }
     public static String id(String id) {
-        return PURPLE + id + RESET;
+        return "[" + PURPLE + id + RESET + "]";
     }
     public static String action(String action) {
-        return CYAN + action + RESET;
+        return "(" + CYAN + action + RESET + ")";
     }
     public static String red(String string) {
         return RED + string + RESET;

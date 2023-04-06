@@ -48,9 +48,9 @@ public class LogClient {
         return response.getHealthCode();
     }
 
-    public int debug(String message) {
+    public int debug(String ...message) {
         DebugRequest request = DebugRequest.newBuilder()
-                .setLogRequest(makeLogRequest(message)).build();
+                .setLogRequest(makeLogRequest(String.join(" -> ", message))).build();
         DebugResponse response;
         try {
             response = logService.debug(request);
@@ -59,9 +59,9 @@ public class LogClient {
         }
         return response.getLogResponse().getCode();
     }
-    public int info(String message) {
+    public int info(String ...message) {
         InfoRequest request = InfoRequest.newBuilder()
-                .setLogRequest(makeLogRequest(message)).build();
+                .setLogRequest(makeLogRequest(String.join(" -> ",message))).build();
         InfoResponse response;
         try {
             response = logService.info(request);
@@ -70,9 +70,9 @@ public class LogClient {
         }
         return response.getLogResponse().getCode();
     }
-    public int warn(String message) {
+    public int warn(String ...message) {
         WarnRequest request = WarnRequest.newBuilder()
-                .setLogRequest(makeLogRequest(message)).build();
+                .setLogRequest(makeLogRequest(String.join(" -> ",message))).build();
         WarnResponse response;
         try {
             response = logService.warn(request);
@@ -81,9 +81,9 @@ public class LogClient {
         }
         return response.getLogResponse().getCode();
     }
-    public int error(String message) {
+    public int error(String ...message) {
         ErrorRequest request = ErrorRequest.newBuilder()
-                .setLogRequest(makeLogRequest(message)).build();
+                .setLogRequest(makeLogRequest(String.join(" -> ",message))).build();
         ErrorResponse response;
         try {
             response = logService.error(request);
