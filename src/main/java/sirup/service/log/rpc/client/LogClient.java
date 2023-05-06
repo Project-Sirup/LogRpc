@@ -5,6 +5,8 @@ import io.grpc.ManagedChannelBuilder;
 import io.grpc.StatusRuntimeException;
 import sirup.service.log.rpc.proto.*;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 import static sirup.service.log.rpc.client.ColorUtil.name;
@@ -39,6 +41,41 @@ public class LogClient {
 
     public static LogClient getInstance() {
         return instance == null ? instance = new LogClient() : instance;
+    }
+
+    public Optional<List<String>> getLogList(String userId, String token) {
+        LogListRequest request = LogListRequest.newBuilder()
+                .setAdminCredentials(Credentials.newBuilder()
+                        .setUserId(userId)
+                        .setToken(token)
+                        .build())
+                .build();
+        LogListResponse response;
+        try {
+            response = logService.logList(request);
+            return Optional.of(response.getLogListList().stream().toList());
+        } catch (StatusRuntimeException e) {
+            fallback.use("LogService unavailable, cannot get list of logs");
+        }
+        return Optional.empty();
+    }
+
+    public Optional<List<LogDTO>> getLogsFrom(String serviceName, String userId, String token) {
+        LogFromRequest request = LogFromRequest.newBuilder()
+                .setAdminCredentials(Credentials.newBuilder()
+                        .setUserId(userId)
+                        .setToken(token)
+                        .build())
+                .build();
+        try {
+            LogFromResponse response = logService.logFrom(request);
+            if (response.getFound()) {
+                return Optional.of(response.getLogsList());
+            }
+        } catch (StatusRuntimeException e) {
+            fallback.use("LogService unavailable, cannot get logs for " + serviceName);
+        }
+        return Optional.empty();
     }
 
     public int health() {

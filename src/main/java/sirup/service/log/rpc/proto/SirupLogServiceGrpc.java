@@ -187,6 +187,70 @@ public final class SirupLogServiceGrpc {
      return getErrorMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<sirup.service.log.rpc.proto.LogListRequest,
+      sirup.service.log.rpc.proto.LogListResponse> getLogListMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "LogList",
+      requestType = sirup.service.log.rpc.proto.LogListRequest.class,
+      responseType = sirup.service.log.rpc.proto.LogListResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<sirup.service.log.rpc.proto.LogListRequest,
+      sirup.service.log.rpc.proto.LogListResponse> getLogListMethod() {
+    io.grpc.MethodDescriptor<sirup.service.log.rpc.proto.LogListRequest, sirup.service.log.rpc.proto.LogListResponse> getLogListMethod;
+    if ((getLogListMethod = SirupLogServiceGrpc.getLogListMethod) == null) {
+      synchronized (SirupLogServiceGrpc.class) {
+        if ((getLogListMethod = SirupLogServiceGrpc.getLogListMethod) == null) {
+          SirupLogServiceGrpc.getLogListMethod = getLogListMethod = 
+              io.grpc.MethodDescriptor.<sirup.service.log.rpc.proto.LogListRequest, sirup.service.log.rpc.proto.LogListResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "log.v2.SirupLogService", "LogList"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  sirup.service.log.rpc.proto.LogListRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  sirup.service.log.rpc.proto.LogListResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new SirupLogServiceMethodDescriptorSupplier("LogList"))
+                  .build();
+          }
+        }
+     }
+     return getLogListMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<sirup.service.log.rpc.proto.LogFromRequest,
+      sirup.service.log.rpc.proto.LogFromResponse> getLogFromMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "LogFrom",
+      requestType = sirup.service.log.rpc.proto.LogFromRequest.class,
+      responseType = sirup.service.log.rpc.proto.LogFromResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<sirup.service.log.rpc.proto.LogFromRequest,
+      sirup.service.log.rpc.proto.LogFromResponse> getLogFromMethod() {
+    io.grpc.MethodDescriptor<sirup.service.log.rpc.proto.LogFromRequest, sirup.service.log.rpc.proto.LogFromResponse> getLogFromMethod;
+    if ((getLogFromMethod = SirupLogServiceGrpc.getLogFromMethod) == null) {
+      synchronized (SirupLogServiceGrpc.class) {
+        if ((getLogFromMethod = SirupLogServiceGrpc.getLogFromMethod) == null) {
+          SirupLogServiceGrpc.getLogFromMethod = getLogFromMethod = 
+              io.grpc.MethodDescriptor.<sirup.service.log.rpc.proto.LogFromRequest, sirup.service.log.rpc.proto.LogFromResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "log.v2.SirupLogService", "LogFrom"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  sirup.service.log.rpc.proto.LogFromRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  sirup.service.log.rpc.proto.LogFromResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new SirupLogServiceMethodDescriptorSupplier("LogFrom"))
+                  .build();
+          }
+        }
+     }
+     return getLogFromMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -249,6 +313,20 @@ public final class SirupLogServiceGrpc {
       asyncUnimplementedUnaryCall(getErrorMethod(), responseObserver);
     }
 
+    /**
+     */
+    public void logList(sirup.service.log.rpc.proto.LogListRequest request,
+        io.grpc.stub.StreamObserver<sirup.service.log.rpc.proto.LogListResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(getLogListMethod(), responseObserver);
+    }
+
+    /**
+     */
+    public void logFrom(sirup.service.log.rpc.proto.LogFromRequest request,
+        io.grpc.stub.StreamObserver<sirup.service.log.rpc.proto.LogFromResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(getLogFromMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -286,6 +364,20 @@ public final class SirupLogServiceGrpc {
                 sirup.service.log.rpc.proto.ErrorRequest,
                 sirup.service.log.rpc.proto.ErrorResponse>(
                   this, METHODID_ERROR)))
+          .addMethod(
+            getLogListMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                sirup.service.log.rpc.proto.LogListRequest,
+                sirup.service.log.rpc.proto.LogListResponse>(
+                  this, METHODID_LOG_LIST)))
+          .addMethod(
+            getLogFromMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                sirup.service.log.rpc.proto.LogFromRequest,
+                sirup.service.log.rpc.proto.LogFromResponse>(
+                  this, METHODID_LOG_FROM)))
           .build();
     }
   }
@@ -347,6 +439,22 @@ public final class SirupLogServiceGrpc {
       asyncUnaryCall(
           getChannel().newCall(getErrorMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void logList(sirup.service.log.rpc.proto.LogListRequest request,
+        io.grpc.stub.StreamObserver<sirup.service.log.rpc.proto.LogListResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getLogListMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void logFrom(sirup.service.log.rpc.proto.LogFromRequest request,
+        io.grpc.stub.StreamObserver<sirup.service.log.rpc.proto.LogFromResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getLogFromMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -400,6 +508,20 @@ public final class SirupLogServiceGrpc {
     public sirup.service.log.rpc.proto.ErrorResponse error(sirup.service.log.rpc.proto.ErrorRequest request) {
       return blockingUnaryCall(
           getChannel(), getErrorMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public sirup.service.log.rpc.proto.LogListResponse logList(sirup.service.log.rpc.proto.LogListRequest request) {
+      return blockingUnaryCall(
+          getChannel(), getLogListMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public sirup.service.log.rpc.proto.LogFromResponse logFrom(sirup.service.log.rpc.proto.LogFromRequest request) {
+      return blockingUnaryCall(
+          getChannel(), getLogFromMethod(), getCallOptions(), request);
     }
   }
 
@@ -460,6 +582,22 @@ public final class SirupLogServiceGrpc {
       return futureUnaryCall(
           getChannel().newCall(getErrorMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<sirup.service.log.rpc.proto.LogListResponse> logList(
+        sirup.service.log.rpc.proto.LogListRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(getLogListMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<sirup.service.log.rpc.proto.LogFromResponse> logFrom(
+        sirup.service.log.rpc.proto.LogFromRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(getLogFromMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_HEALTH = 0;
@@ -467,6 +605,8 @@ public final class SirupLogServiceGrpc {
   private static final int METHODID_INFO = 2;
   private static final int METHODID_WARN = 3;
   private static final int METHODID_ERROR = 4;
+  private static final int METHODID_LOG_LIST = 5;
+  private static final int METHODID_LOG_FROM = 6;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -504,6 +644,14 @@ public final class SirupLogServiceGrpc {
         case METHODID_ERROR:
           serviceImpl.error((sirup.service.log.rpc.proto.ErrorRequest) request,
               (io.grpc.stub.StreamObserver<sirup.service.log.rpc.proto.ErrorResponse>) responseObserver);
+          break;
+        case METHODID_LOG_LIST:
+          serviceImpl.logList((sirup.service.log.rpc.proto.LogListRequest) request,
+              (io.grpc.stub.StreamObserver<sirup.service.log.rpc.proto.LogListResponse>) responseObserver);
+          break;
+        case METHODID_LOG_FROM:
+          serviceImpl.logFrom((sirup.service.log.rpc.proto.LogFromRequest) request,
+              (io.grpc.stub.StreamObserver<sirup.service.log.rpc.proto.LogFromResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -571,6 +719,8 @@ public final class SirupLogServiceGrpc {
               .addMethod(getInfoMethod())
               .addMethod(getWarnMethod())
               .addMethod(getErrorMethod())
+              .addMethod(getLogListMethod())
+              .addMethod(getLogFromMethod())
               .build();
         }
       }

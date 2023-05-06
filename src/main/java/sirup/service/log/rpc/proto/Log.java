@@ -15,6 +15,36 @@ public final class Log {
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_log_v2_LogFromRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_log_v2_LogFromRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_log_v2_LogFromResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_log_v2_LogFromResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_log_v2_LogDTO_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_log_v2_LogDTO_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_log_v2_Credentials_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_log_v2_Credentials_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_log_v2_LogListRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_log_v2_LogListRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_log_v2_LogListResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_log_v2_LogListResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
     internal_static_log_v2_HealthRequest_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -83,31 +113,43 @@ public final class Log {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\017sirup_log.proto\022\006log.v2\"\017\n\rHealthReque" +
-      "st\"%\n\016HealthResponse\022\023\n\013health_code\030\001 \001(" +
-      "\005\"7\n\014DebugRequest\022\'\n\013log_request\030\001 \001(\0132\022" +
-      ".log.v2.LogRequest\":\n\rDebugResponse\022)\n\014l" +
-      "og_response\030\001 \001(\0132\023.log.v2.LogResponse\"6" +
-      "\n\013InfoRequest\022\'\n\013log_request\030\001 \001(\0132\022.log" +
-      ".v2.LogRequest\"9\n\014InfoResponse\022)\n\014log_re" +
-      "sponse\030\001 \001(\0132\023.log.v2.LogResponse\"6\n\013War" +
-      "nRequest\022\'\n\013log_request\030\001 \001(\0132\022.log.v2.L" +
-      "ogRequest\"9\n\014WarnResponse\022)\n\014log_respons" +
-      "e\030\001 \001(\0132\023.log.v2.LogResponse\"7\n\014ErrorReq" +
-      "uest\022\'\n\013log_request\030\001 \001(\0132\022.log.v2.LogRe" +
-      "quest\":\n\rErrorResponse\022)\n\014log_response\030\001" +
-      " \001(\0132\023.log.v2.LogResponse\"5\n\nLogRequest\022" +
-      "\017\n\007message\030\001 \001(\t\022\026\n\016sender_service\030\002 \001(\t" +
-      "\"\033\n\013LogResponse\022\014\n\004code\030\001 \001(\0052\246\002\n\017SirupL" +
-      "ogService\0229\n\006Health\022\025.log.v2.HealthReque" +
-      "st\032\026.log.v2.HealthResponse\"\000\0226\n\005Debug\022\024." +
-      "log.v2.DebugRequest\032\025.log.v2.DebugRespon" +
-      "se\"\000\0223\n\004Info\022\023.log.v2.InfoRequest\032\024.log." +
-      "v2.InfoResponse\"\000\0223\n\004Warn\022\023.log.v2.WarnR" +
-      "equest\032\024.log.v2.WarnResponse\"\000\0226\n\005Error\022" +
-      "\024.log.v2.ErrorRequest\032\025.log.v2.ErrorResp" +
-      "onse\"\000B*\n\033sirup.service.log.rpc.protoB\003L" +
-      "ogP\001\242\002\003SASb\006proto3"
+      "\n\017sirup_log.proto\022\006log.v2\"R\n\016LogFromRequ" +
+      "est\022.\n\021admin_credentials\030\001 \001(\0132\023.log.v2." +
+      "Credentials\022\020\n\010log_name\030\002 \001(\t\">\n\017LogFrom" +
+      "Response\022\r\n\005found\030\001 \001(\010\022\034\n\004logs\030\002 \003(\0132\016." +
+      "log.v2.LogDTO\"6\n\006LogDTO\022\r\n\005level\030\001 \001(\t\022\017" +
+      "\n\007message\030\002 \001(\t\022\014\n\004date\030\003 \001(\t\"-\n\013Credent" +
+      "ials\022\017\n\007user_id\030\001 \001(\t\022\r\n\005token\030\002 \001(\t\"@\n\016" +
+      "LogListRequest\022.\n\021admin_credentials\030\001 \001(" +
+      "\0132\023.log.v2.Credentials\"#\n\017LogListRespons" +
+      "e\022\020\n\010log_list\030\001 \003(\t\"\017\n\rHealthRequest\"%\n\016" +
+      "HealthResponse\022\023\n\013health_code\030\001 \001(\005\"7\n\014D" +
+      "ebugRequest\022\'\n\013log_request\030\001 \001(\0132\022.log.v" +
+      "2.LogRequest\":\n\rDebugResponse\022)\n\014log_res" +
+      "ponse\030\001 \001(\0132\023.log.v2.LogResponse\"6\n\013Info" +
+      "Request\022\'\n\013log_request\030\001 \001(\0132\022.log.v2.Lo" +
+      "gRequest\"9\n\014InfoResponse\022)\n\014log_response" +
+      "\030\001 \001(\0132\023.log.v2.LogResponse\"6\n\013WarnReque" +
+      "st\022\'\n\013log_request\030\001 \001(\0132\022.log.v2.LogRequ" +
+      "est\"9\n\014WarnResponse\022)\n\014log_response\030\001 \001(" +
+      "\0132\023.log.v2.LogResponse\"7\n\014ErrorRequest\022\'" +
+      "\n\013log_request\030\001 \001(\0132\022.log.v2.LogRequest\"" +
+      ":\n\rErrorResponse\022)\n\014log_response\030\001 \001(\0132\023" +
+      ".log.v2.LogResponse\"5\n\nLogRequest\022\017\n\007mes" +
+      "sage\030\001 \001(\t\022\026\n\016sender_service\030\002 \001(\t\"\033\n\013Lo" +
+      "gResponse\022\014\n\004code\030\001 \001(\0052\242\003\n\017SirupLogServ" +
+      "ice\0229\n\006Health\022\025.log.v2.HealthRequest\032\026.l" +
+      "og.v2.HealthResponse\"\000\0226\n\005Debug\022\024.log.v2" +
+      ".DebugRequest\032\025.log.v2.DebugResponse\"\000\0223" +
+      "\n\004Info\022\023.log.v2.InfoRequest\032\024.log.v2.Inf" +
+      "oResponse\"\000\0223\n\004Warn\022\023.log.v2.WarnRequest" +
+      "\032\024.log.v2.WarnResponse\"\000\0226\n\005Error\022\024.log." +
+      "v2.ErrorRequest\032\025.log.v2.ErrorResponse\"\000" +
+      "\022<\n\007LogList\022\026.log.v2.LogListRequest\032\027.lo" +
+      "g.v2.LogListResponse\"\000\022<\n\007LogFrom\022\026.log." +
+      "v2.LogFromRequest\032\027.log.v2.LogFromRespon" +
+      "se\"\000B*\n\033sirup.service.log.rpc.protoB\003Log" +
+      "P\001\242\002\003SASb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -121,74 +163,110 @@ public final class Log {
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         }, assigner);
-    internal_static_log_v2_HealthRequest_descriptor =
+    internal_static_log_v2_LogFromRequest_descriptor =
       getDescriptor().getMessageTypes().get(0);
+    internal_static_log_v2_LogFromRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_log_v2_LogFromRequest_descriptor,
+        new java.lang.String[] { "AdminCredentials", "LogName", });
+    internal_static_log_v2_LogFromResponse_descriptor =
+      getDescriptor().getMessageTypes().get(1);
+    internal_static_log_v2_LogFromResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_log_v2_LogFromResponse_descriptor,
+        new java.lang.String[] { "Found", "Logs", });
+    internal_static_log_v2_LogDTO_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_log_v2_LogDTO_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_log_v2_LogDTO_descriptor,
+        new java.lang.String[] { "Level", "Message", "Date", });
+    internal_static_log_v2_Credentials_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_log_v2_Credentials_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_log_v2_Credentials_descriptor,
+        new java.lang.String[] { "UserId", "Token", });
+    internal_static_log_v2_LogListRequest_descriptor =
+      getDescriptor().getMessageTypes().get(4);
+    internal_static_log_v2_LogListRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_log_v2_LogListRequest_descriptor,
+        new java.lang.String[] { "AdminCredentials", });
+    internal_static_log_v2_LogListResponse_descriptor =
+      getDescriptor().getMessageTypes().get(5);
+    internal_static_log_v2_LogListResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_log_v2_LogListResponse_descriptor,
+        new java.lang.String[] { "LogList", });
+    internal_static_log_v2_HealthRequest_descriptor =
+      getDescriptor().getMessageTypes().get(6);
     internal_static_log_v2_HealthRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_log_v2_HealthRequest_descriptor,
         new java.lang.String[] { });
     internal_static_log_v2_HealthResponse_descriptor =
-      getDescriptor().getMessageTypes().get(1);
+      getDescriptor().getMessageTypes().get(7);
     internal_static_log_v2_HealthResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_log_v2_HealthResponse_descriptor,
         new java.lang.String[] { "HealthCode", });
     internal_static_log_v2_DebugRequest_descriptor =
-      getDescriptor().getMessageTypes().get(2);
+      getDescriptor().getMessageTypes().get(8);
     internal_static_log_v2_DebugRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_log_v2_DebugRequest_descriptor,
         new java.lang.String[] { "LogRequest", });
     internal_static_log_v2_DebugResponse_descriptor =
-      getDescriptor().getMessageTypes().get(3);
+      getDescriptor().getMessageTypes().get(9);
     internal_static_log_v2_DebugResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_log_v2_DebugResponse_descriptor,
         new java.lang.String[] { "LogResponse", });
     internal_static_log_v2_InfoRequest_descriptor =
-      getDescriptor().getMessageTypes().get(4);
+      getDescriptor().getMessageTypes().get(10);
     internal_static_log_v2_InfoRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_log_v2_InfoRequest_descriptor,
         new java.lang.String[] { "LogRequest", });
     internal_static_log_v2_InfoResponse_descriptor =
-      getDescriptor().getMessageTypes().get(5);
+      getDescriptor().getMessageTypes().get(11);
     internal_static_log_v2_InfoResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_log_v2_InfoResponse_descriptor,
         new java.lang.String[] { "LogResponse", });
     internal_static_log_v2_WarnRequest_descriptor =
-      getDescriptor().getMessageTypes().get(6);
+      getDescriptor().getMessageTypes().get(12);
     internal_static_log_v2_WarnRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_log_v2_WarnRequest_descriptor,
         new java.lang.String[] { "LogRequest", });
     internal_static_log_v2_WarnResponse_descriptor =
-      getDescriptor().getMessageTypes().get(7);
+      getDescriptor().getMessageTypes().get(13);
     internal_static_log_v2_WarnResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_log_v2_WarnResponse_descriptor,
         new java.lang.String[] { "LogResponse", });
     internal_static_log_v2_ErrorRequest_descriptor =
-      getDescriptor().getMessageTypes().get(8);
+      getDescriptor().getMessageTypes().get(14);
     internal_static_log_v2_ErrorRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_log_v2_ErrorRequest_descriptor,
         new java.lang.String[] { "LogRequest", });
     internal_static_log_v2_ErrorResponse_descriptor =
-      getDescriptor().getMessageTypes().get(9);
+      getDescriptor().getMessageTypes().get(15);
     internal_static_log_v2_ErrorResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_log_v2_ErrorResponse_descriptor,
         new java.lang.String[] { "LogResponse", });
     internal_static_log_v2_LogRequest_descriptor =
-      getDescriptor().getMessageTypes().get(10);
+      getDescriptor().getMessageTypes().get(16);
     internal_static_log_v2_LogRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_log_v2_LogRequest_descriptor,
         new java.lang.String[] { "Message", "SenderService", });
     internal_static_log_v2_LogResponse_descriptor =
-      getDescriptor().getMessageTypes().get(11);
+      getDescriptor().getMessageTypes().get(17);
     internal_static_log_v2_LogResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_log_v2_LogResponse_descriptor,
