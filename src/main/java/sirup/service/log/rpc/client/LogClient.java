@@ -66,6 +66,7 @@ public class LogClient {
                         .setUserId(userId)
                         .setToken(token)
                         .build())
+                .setLogName(serviceName)
                 .build();
         try {
             LogFromResponse response = logService.logFrom(request);
